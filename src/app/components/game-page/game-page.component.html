@@ -9,17 +9,36 @@
   <div class="section section-body">
     <div *ngFor="let i of indexArr">
       <div *ngFor="let j of indexArr">
-        <div class="coin">{{ memoryDataSet![i + j].value }}</div>
+        <div
+          class="coin"
+          (click)="coinClicked(i * gameType.gridSize + j)"
+          [ngClass]="{
+            'coin-open': memoryDataSet![i * gameType.gridSize + j].opened,
+            'last-open-coins': lastTwoClickedIdx.includes(
+              i * gameType.gridSize + j
+            )
+          }"
+        >
+          {{
+            memoryDataSet![i * gameType.gridSize + j].opened
+              ? memoryDataSet![i * gameType.gridSize + j].value
+              : ""
+          }}
+        </div>
       </div>
     </div>
   </div>
-  <div class="section section-footer">
+  <div
+    class="section section-footer"
+    *ngIf="gameType.numberOfPlayers !== 1; else soloPlayer"
+  >
     <div class="button-wrapper">
       <button
         *ngFor="let player of playerIdx"
         class="player-button"
         [ngClass]="{ selected: player.current }"
       >
+        <span id="player-button-ribon" *ngIf="player.current"></span>
         <span id="left-text">{{ player.title }}</span>
         <span id="right-text">{{ player.points }}</span>
       </button>
@@ -30,4 +49,20 @@
       }}</span>
     </div>
   </div>
+  <ng-template #soloPlayer>
+    <div class="section section-footer-solo">
+      <div class="button-wrapper">
+        <button class="player-button">
+          <span id="left-text">Time</span>
+          <span id="right-text">{{ timer.mm }}:{{ timer.ss }}</span>
+        </button>
+      </div>
+      <div class="button-wrapper">
+        <button class="player-button">
+          <span id="left-text">Moves</span>
+          <span id="right-text">{{ clickCounter }}</span>
+        </button>
+      </div>
+    </div>
+  </ng-template>
 </div>

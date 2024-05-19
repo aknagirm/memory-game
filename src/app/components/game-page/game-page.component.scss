@@ -25,32 +25,45 @@
   align-items: center;
 }
 
+.section-footer-solo {
+  flex: 0 0 10%;
+  align-items: center;
+}
+
 .section-footer {
   flex-direction: column;
   flex: 0 0 10%;
   align-items: center;
   justify-content: flex-start !important;
+}
 
-  .player-button {
-    width: 100%;
-    margin-right: 10px;
-    height: 40px;
-    border-radius: 10px;
-    border: none;
-    background-color: $grey;
-    #left-text {
-      float: left;
-      padding-left: 5px;
-      font-weight: bold;
-      color: $dark-grey;
-    }
-    #right-text {
-      float: right;
-      padding-right: 5px;
-      font-size: large;
-      font-weight: bold;
-      color: $greyish-black;
-    }
+.player-button {
+  position: relative;
+  width: 100%;
+  margin-right: 10px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  background-color: $grey;
+  #left-text {
+    float: left;
+    padding-left: 5px;
+    font-weight: bold;
+    color: $dark-grey;
+  }
+  #right-text {
+    float: right;
+    padding-right: 5px;
+    font-size: large;
+    font-weight: bold;
+    color: $greyish-black;
+  }
+
+  #player-button-ribon {
+    top: -22px;
+    position: absolute;
+    border: 12px solid transparent;
+    border-bottom-color: $orange;
   }
 
   .current-player-text-wrapper {
@@ -118,4 +131,12 @@
   font-size: 32px;
   font-weight: bold;
   margin: 10px;
+}
+
+.coin-open {
+  background-color: $grey;
+}
+
+.last-open-coins {
+  background-color: $orange;
 }

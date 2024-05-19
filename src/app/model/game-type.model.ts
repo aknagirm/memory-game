@@ -13,6 +13,7 @@ export interface GameType {
 export interface MemoryDataSet {
   value: string;
   opened: boolean;
+  matched: boolean;
 }
 
 export interface PlayerPonits {

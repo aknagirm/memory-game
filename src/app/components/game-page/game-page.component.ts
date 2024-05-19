@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import {
   GameType,
   MemoryDataSet,
@@ -10,18 +10,22 @@ import {
   templateUrl: './game-page.component.html',
   styleUrls: ['./game-page.component.scss'],
 })
-export class GamePageComponent implements OnInit {
-  memoryDataSet: MemoryDataSet[] | undefined;
+export class GamePageComponent implements OnInit, OnDestroy {
+  memoryDataSet: MemoryDataSet[] = [];
   indexArr: number[] = [];
   playerIdx: PlayerPonits[] = [];
   dataReady = false;
   gameType: GameType = {
     gameTheme: 'number',
-    numberOfPlayers: 3,
+    numberOfPlayers: 1,
     gridSize: 6,
   };
+  timer = { mm: '00', ss: '00' };
+  timerSub$: NodeJS.Timeout | undefined;
+  lastTwoClickedIdx: number[] = [];
+  clickCounter = 0;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.indexArr = [...Array(this.gameType.gridSize).keys()];
@@ -41,10 +45,25 @@ export class GamePageComponent implements OnInit {
         return {
           value: (data + 1).toString(),
           opened: false,
+          matched: false,
         };
       }
     );
     this.dataSetArrCreation(dataVal);
+  }
+
+  timerStart() {
+    let ss = 0;
+    let mm = 0;
+    this.timerSub$ = setInterval(() => {
+      if (ss === 59) {
+        ss = 0;
+        mm++;
+      } else {
+        ss++;
+      }
+      this.timer = { mm: `0${mm}`.slice(-2), ss: `0${ss}`.slice(-2) };
+    }, 1000);
   }
 
   dataSetArrCreation(dataVal: MemoryDataSet[]) {
@@ -55,6 +74,40 @@ export class GamePageComponent implements OnInit {
       dataVal[randomNum] = temp;
     }
     this.memoryDataSet = dataVal;
-    this.cdr.detectChanges();
+  }
+
+  coinClicked(idx: number) {
+    if (this.memoryDataSet[idx].matched) {
+      return;
+    }
+    if (this.lastTwoClickedIdx.includes(idx)) {
+      return;
+    }
+    if (this.gameType.numberOfPlayers === 1) {
+      this.clickCounter++;
+      if (this.clickCounter === 1) {
+        this.timerStart();
+      }
+    }
+
+    this.memoryDataSet[idx].opened = true;
+    if (this.lastTwoClickedIdx.length === 2) {
+      if (
+        this.memoryDataSet[this.lastTwoClickedIdx[0]]?.value !==
+        this.memoryDataSet[this.lastTwoClickedIdx[1]]?.value
+      ) {
+        this.memoryDataSet[this.lastTwoClickedIdx[0]].opened = false;
+        this.memoryDataSet[this.lastTwoClickedIdx[1]].opened = false;
+      } else {
+        this.memoryDataSet[this.lastTwoClickedIdx[0]].matched = true;
+        this.memoryDataSet[this.lastTwoClickedIdx[1]].matched = true;
+      }
+      this.lastTwoClickedIdx = [];
+    }
+    this.lastTwoClickedIdx.push(idx);
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.timerSub$);
   }
 }
