@@ -1,0 +1,110 @@
+<div class="container">
+  <div class="label-header">
+    <h2>Memory</h2>
+  </div>
+  <div class="card-wrapper">
+    <div class="card">
+      <div class="card-section">
+        <p>Select Theme</p>
+        <div class="button-wrapper">
+          <button
+            class="action-button"
+            (click)="gameTheme = 'number'"
+            [ngClass]="{
+              selected: gameTheme === 'number',
+              'action-button-hover-effect': gameTheme !== 'number'
+            }"
+          >
+            Numbers
+          </button>
+          <button
+            class="action-button"
+            (click)="gameTheme = 'icons'"
+            [ngClass]="{
+              selected: gameTheme === 'icons',
+              'action-button-hover-effect': gameTheme !== 'icons'
+            }"
+          >
+            Icons
+          </button>
+        </div>
+      </div>
+      <div class="card-section">
+        <p>Number of Players</p>
+        <div class="button-wrapper">
+          <button
+            class="action-button"
+            (click)="numberofPlayer = 1"
+            [ngClass]="{
+              selected: numberofPlayer === 1,
+              'action-button-hover-effect': numberofPlayer !== 1
+            }"
+          >
+            1
+          </button>
+          <button
+            class="action-button"
+            (click)="numberofPlayer = 2"
+            [ngClass]="{
+              selected: numberofPlayer === 2,
+              'action-button-hover-effect': numberofPlayer !== 2
+            }"
+          >
+            2
+          </button>
+          <button
+            class="action-button"
+            (click)="numberofPlayer = 3"
+            [ngClass]="{
+              selected: numberofPlayer === 3,
+              'action-button-hover-effect': numberofPlayer !== 3
+            }"
+          >
+            3
+          </button>
+          <button
+            class="action-button"
+            (click)="numberofPlayer = 4"
+            [ngClass]="{
+              selected: numberofPlayer === 4,
+              'action-button-hover-effect': numberofPlayer !== 4
+            }"
+          >
+            4
+          </button>
+        </div>
+      </div>
+      <div class="card-section">
+        <p>Grid Size</p>
+        <div class="button-wrapper">
+          <button
+            class="action-button"
+            (click)="gridSize = 4"
+            [ngClass]="{
+              selected: gridSize === 4,
+              'action-button-hover-effect': gridSize !== 4
+            }"
+          >
+            4x4
+          </button>
+          <button
+            class="action-button"
+            (click)="gridSize = 6"
+            [ngClass]="{
+              selected: gridSize === 6,
+              'action-button-hover-effect': gridSize !== 6
+            }"
+          >
+            6x6
+          </button>
+        </div>
+      </div>
+      <br />
+      <div class="card-section">
+        <div class="button-wrapper">
+          <button class="action-button start-button">Start Game</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

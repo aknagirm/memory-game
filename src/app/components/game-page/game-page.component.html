@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="section section-header">
+    <h3>Memory</h3>
+    <div class="button-wrapper">
+      <button class="restart-button">Restart</button>
+      <button class="new-game-button">New Game</button>
+    </div>
+  </div>
+  <div class="section section-body">
+    <div *ngFor="let i of indexArr">
+      <div *ngFor="let j of indexArr">
+        <div class="coin">{{ memoryDataSet![i + j].value }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="section section-footer">
+    <div class="button-wrapper">
+      <button
+        *ngFor="let player of playerIdx"
+        class="player-button"
+        [ngClass]="{ selected: player.current }"
+      >
+        <span id="left-text">{{ player.title }}</span>
+        <span id="right-text">{{ player.points }}</span>
+      </button>
+    </div>
+    <div class="current-player-text-wrapper">
+      <span id="current-player-text" *ngFor="let player of playerIdx">{{
+        player.current ? "Current player" : ""
+      }}</span>
+    </div>
+  </div>
+</div>
