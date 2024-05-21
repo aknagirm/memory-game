@@ -17,7 +17,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
   dataReady = false;
   gameType: GameType = {
     gameTheme: 'number',
-    numberOfPlayers: 1,
+    numberOfPlayers: 4,
     gridSize: 6,
   };
   timer = { mm: '00', ss: '00' };
@@ -34,7 +34,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
         return {
           title: `Player ${idx + 1}`,
           points: 0,
-          current: id === 0 ? true : false,
+          current: id === 1 ? true : false,
         };
       }
     );

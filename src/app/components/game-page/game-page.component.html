@@ -43,9 +43,9 @@
       </button>
     </div>
     <div class="current-player-text-wrapper">
-      <span id="current-player-text" *ngFor="let player of playerIdx">{{
-        player.current ? "Current player" : ""
-      }}</span>
+      <div id="current-player-text" *ngFor="let player of playerIdx">
+        {{ player.current ? "Current player" : "" }}
+      </div>
     </div>
   </div>
   <ng-template #soloPlayer>

@@ -65,14 +65,14 @@
     border: 12px solid transparent;
     border-bottom-color: $orange;
   }
+}
 
-  .current-player-text-wrapper {
-    width: 100%;
-    display: flex;
-    font-weight: bold;
-    letter-spacing: 3px;
-    justify-content: space-between;
-  }
+.current-player-text-wrapper {
+  width: 100%;
+  display: flex;
+  font-weight: bold;
+  letter-spacing: 3px;
+  justify-content: space-between;
 }
 
 .selected {
