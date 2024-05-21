@@ -34,7 +34,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
         return {
           title: `Player ${idx + 1}`,
           points: 0,
-          current: id === 1 ? true : false,
+          current: id === 0 ? true : false,
         };
       }
     );
@@ -92,19 +92,42 @@ export class GamePageComponent implements OnInit, OnDestroy {
 
     this.memoryDataSet[idx].opened = true;
     if (this.lastTwoClickedIdx.length === 2) {
+      this.lastTwoClickedIdx = [];
+    }
+    this.lastTwoClickedIdx.push(idx);
+    if (this.lastTwoClickedIdx.length === 2) {
       if (
         this.memoryDataSet[this.lastTwoClickedIdx[0]]?.value !==
         this.memoryDataSet[this.lastTwoClickedIdx[1]]?.value
       ) {
         this.memoryDataSet[this.lastTwoClickedIdx[0]].opened = false;
         this.memoryDataSet[this.lastTwoClickedIdx[1]].opened = false;
+        this.currentPlayerChange();
       } else {
         this.memoryDataSet[this.lastTwoClickedIdx[0]].matched = true;
         this.memoryDataSet[this.lastTwoClickedIdx[1]].matched = true;
+        this.playerIdx.map((player) => {
+          if (player.current) {
+            player.points++;
+          }
+        });
       }
-      this.lastTwoClickedIdx = [];
     }
-    this.lastTwoClickedIdx.push(idx);
+  }
+
+  currentPlayerChange() {
+    for (let i = 0; i < this.playerIdx.length; i++) {
+      const player = this.playerIdx[i];
+      if (player.current) {
+        if (i === this.playerIdx.length - 1) {
+          this.playerIdx[0].current = true;
+        } else {
+          this.playerIdx[i + 1].current = true;
+        }
+        player.current = false;
+        break;
+      }
+    }
   }
 
   ngOnDestroy(): void {
