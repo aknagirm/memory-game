@@ -120,23 +120,45 @@
 }
 
 .coin {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
   height: 60px;
   width: 60px;
   border-radius: 50%;
-  background-color: $greyish-black;
   color: $off-white;
   font-size: 32px;
   font-weight: bold;
   margin: 10px;
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  .front {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background-color: $greyish-black;
+    backface-visibility: hidden;
+  }
+  .back {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background-color: $orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+  }
 }
 
 .coin-open {
-  background-color: $grey;
+  transform: rotateY(180deg);
+  .back {
+    background-color: $grey;
+  }
 }
 
 .last-open-coins {
-  background-color: $orange;
+  transform: rotateY(180deg);
 }

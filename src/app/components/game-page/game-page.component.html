@@ -13,17 +13,16 @@
           class="coin"
           (click)="coinClicked(i * gameType.gridSize + j)"
           [ngClass]="{
-            'coin-open': memoryDataSet![i * gameType.gridSize + j].opened,
+            'coin-open': memoryDataSet![i * gameType.gridSize + j].matched,
             'last-open-coins': lastTwoClickedIdx.includes(
               i * gameType.gridSize + j
             )
           }"
         >
-          {{
-            memoryDataSet![i * gameType.gridSize + j].opened
-              ? memoryDataSet![i * gameType.gridSize + j].value
-              : ""
-          }}
+          <div class="front"></div>
+          <div class="back">
+            {{ memoryDataSet![i * gameType.gridSize + j].value }}
+          </div>
         </div>
       </div>
     </div>
