@@ -1,4 +1,14 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { Router } from '@angular/router';
+import { faIconList } from 'src/app/model/fa.const';
 import {
   GameType,
   MemoryDataSet,
@@ -15,19 +25,26 @@ export class GamePageComponent implements OnInit, OnDestroy {
   indexArr: number[] = [];
   playerIdx: PlayerPonits[] = [];
   dataReady = false;
-  gameType: GameType = {
-    gameTheme: 'number',
-    numberOfPlayers: 4,
-    gridSize: 6,
-  };
+  gameType: GameType;
   timer = { mm: '00', ss: '00' };
   timerSub$: NodeJS.Timeout | undefined;
   lastTwoClickedIdx: number[] = [];
   clickCounter = 0;
+  @ViewChild('dialog', { read: ElementRef })
+  dialog!: ElementRef;
+  nonMatchedItem = 0;
 
-  constructor() {}
+  constructor(private router: Router) {
+    this.gameType =
+      this.router.getCurrentNavigation()?.extras.state!['gameType'];
+  }
 
   ngOnInit(): void {
+    this.dataLoad();
+    this.gameBoardSetup();
+  }
+
+  dataLoad() {
     this.indexArr = [...Array(this.gameType.gridSize).keys()];
     this.playerIdx = [...Array(this.gameType.numberOfPlayers).keys()].map(
       (idx, id) => {
@@ -38,12 +55,30 @@ export class GamePageComponent implements OnInit, OnDestroy {
         };
       }
     );
-    const totalIndex = Math.pow(this.gameType.gridSize, 2);
-    const dataValTemp = [...Array(totalIndex / 2).keys()];
+  }
+
+  /*  ngAfterViewInit(): void {
+    setTimeout(() => {
+      (this.dialog.nativeElement as HTMLDialogElement).showModal();
+    }, 1000);
+  } */
+
+  gameBoardSetup() {
+    let dataValTemp: string[] = [];
+    const totalIndex = Math.pow(this.gameType.gridSize, 2) / 2;
+    this.nonMatchedItem = totalIndex;
+    if (this.gameType.gameTheme === 'number') {
+      dataValTemp = [...Array(totalIndex).keys()].map((a) =>
+        (a + 1).toString()
+      );
+    } else {
+      dataValTemp = faIconList.slice(0, totalIndex);
+    }
+
     const dataVal: MemoryDataSet[] = [...dataValTemp, ...dataValTemp].map(
       (data) => {
         return {
-          value: (data + 1).toString(),
+          value: data,
           opened: false,
           matched: false,
         };
@@ -111,6 +146,11 @@ export class GamePageComponent implements OnInit, OnDestroy {
             player.points++;
           }
         });
+        if (!--this.nonMatchedItem) {
+          clearTimeout(this.timerSub$);
+          this.playerIdx = [...this.playerIdx];
+          (this.dialog.nativeElement as HTMLDialogElement).showModal();
+        }
       }
     }
   }
@@ -130,7 +170,25 @@ export class GamePageComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
+  restartCall() {
+    (this.dialog.nativeElement as HTMLDialogElement).close();
+    this.cleanUp();
+    this.dataLoad();
+    this.gameBoardSetup();
+  }
+
+  newSetup() {
+    this.router.navigateByUrl('/home');
+  }
+
+  cleanUp() {
+    this.lastTwoClickedIdx = [];
+    this.clickCounter = 0;
+    this.timer = { mm: '00', ss: '00' };
     clearInterval(this.timerSub$);
+  }
+
+  ngOnDestroy(): void {
+    this.cleanUp();
   }
 }

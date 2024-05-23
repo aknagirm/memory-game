@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {
+  GameTheme,
+  GameType,
+  GridSize,
+  NumberOfPlayers,
+} from 'src/app/model/game-type.model';
 
 @Component({
   selector: 'app-start-page',
@@ -6,15 +13,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./start-page.component.scss'],
 })
 export class StartPageComponent implements OnInit {
-  gameTheme = 'number';
-  numberofPlayer = 1;
-  gridSize = 4;
+  gameTheme: GameTheme = 'number';
+  numberofPlayer: NumberOfPlayers = 1;
+  gridSize: GridSize = 2;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
-  gameThemeChoose(gameTheme: string) {
-    this.gameTheme = gameTheme;
+  startGame() {
+    const gameType: GameType = {
+      gameTheme: this.gameTheme,
+      numberOfPlayers: this.numberofPlayer,
+      gridSize: this.gridSize,
+    };
+    this.router.navigateByUrl('/game', { state: { gameType } });
   }
 }

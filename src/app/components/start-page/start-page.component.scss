@@ -20,6 +20,7 @@
   border-radius: 20px;
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 50vh;
 }
 
@@ -43,6 +44,7 @@
 
 .selected {
   background-color: $greyish-black !important;
+  color: $white !important;
 }
 
 .action-button {

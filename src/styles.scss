@@ -13,3 +13,45 @@ body {
 .button-warpper :last-child {
   margin-right: 0;
 }
+
+.player-score {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $result-grid-bg;
+  border-radius: 10px;
+  min-height: 40px;
+  margin: 10px auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.left-text {
+  float: left;
+  padding-left: 10px;
+  font-weight: bold;
+  color: $dark-grey;
+}
+.right-text {
+  float: right;
+  padding-right: 10px;
+  font-size: large;
+  font-weight: bold;
+  color: $greyish-black;
+}
+
+.button-wrapper {
+  .restart-button {
+    @include action-button-wrapper($orange);
+  }
+  .restart-button:hover {
+    @include darken-on-hover($orange);
+  }
+  .new-game-button {
+    @include action-button-wrapper($grey);
+  }
+  .new-game-button:hover {
+    @include darken-on-hover($grey);
+  }
+}

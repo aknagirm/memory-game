@@ -1,0 +1,32 @@
+@import "../../../gloabl-styles-variable/global-var";
+@import "../../../styles.scss";
+
+.card-wrapper {
+  background-color: $off-white;
+  border-radius: 20px;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+  .card {
+    width: 80%;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    .card-header {
+      text-align: center;
+      p {
+        font-size: small;
+        font-weight: bold;
+        color: $dark-grey;
+      }
+    }
+
+    .winner {
+      background-color: $black;
+      span {
+        color: $white !important;
+      }
+    }
+  }
+}

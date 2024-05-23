@@ -1,9 +1,19 @@
+<dialog class="modal" #dialog>
+  <app-result-dialog
+    *ngIf="!nonMatchedItem"
+    [gameType]="gameType"
+    [playerIdx]="playerIdx"
+    [clickCounter]="clickCounter"
+    [timer]="timer"
+    (restartCall)="restartCall()"
+  ></app-result-dialog>
+</dialog>
 <div class="container">
   <div class="section section-header">
     <h3>Memory</h3>
     <div class="button-wrapper">
-      <button class="restart-button">Restart</button>
-      <button class="new-game-button">New Game</button>
+      <button class="restart-button" (click)="restartCall()">Restart</button>
+      <button class="new-game-button" (click)="newSetup()">New Game</button>
     </div>
   </div>
   <div class="section section-body">
@@ -20,8 +30,13 @@
           }"
         >
           <div class="front"></div>
-          <div class="back">
+          <div class="back" *ngIf="gameType.gameTheme === 'number'">
             {{ memoryDataSet![i * gameType.gridSize + j].value }}
+          </div>
+          <div class="back" *ngIf="gameType.gameTheme === 'icons'">
+            <i
+              class="{{ memoryDataSet![i * gameType.gridSize + j].value }}"
+            ></i>
           </div>
         </div>
       </div>
@@ -38,8 +53,8 @@
         [ngClass]="{ selected: player.current }"
       >
         <span id="player-button-ribon" *ngIf="player.current"></span>
-        <span id="left-text">{{ player.title }}</span>
-        <span id="right-text">{{ player.points }}</span>
+        <span class="left-text">{{ player.title }}</span>
+        <span class="right-text">{{ player.points }}</span>
       </button>
     </div>
     <div class="current-player-text-wrapper">
@@ -50,17 +65,13 @@
   </div>
   <ng-template #soloPlayer>
     <div class="section section-footer-solo">
-      <div class="button-wrapper">
-        <button class="player-button">
-          <span id="left-text">Time</span>
-          <span id="right-text">{{ timer.mm }}:{{ timer.ss }}</span>
-        </button>
+      <div class="player-score" style="margin-right: 5px">
+        <span class="left-text">Time</span>
+        <span class="right-text">{{ timer.mm }}:{{ timer.ss }}</span>
       </div>
-      <div class="button-wrapper">
-        <button class="player-button">
-          <span id="left-text">Moves</span>
-          <span id="right-text">{{ clickCounter }}</span>
-        </button>
+      <div class="player-score" style="margin-left: 5px">
+        <span class="left-text">Moves</span>
+        <span class="right-text">{{ clickCounter }}</span>
       </div>
     </div>
   </ng-template>

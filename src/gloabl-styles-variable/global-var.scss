@@ -6,6 +6,8 @@ $off-white: #f2f2f2;
 $dark-grey: #7191a5;
 $greyish-blue: #6395b8;
 $white: #fcfcfc;
+$backdrop-color: #979797;
+$result-grid-bg: #dfe7ec;
 
 @mixin action-button-wrapper($btn-color) {
   height: 2rem;
@@ -14,8 +16,13 @@ $white: #fcfcfc;
   width: 100%;
   margin-right: 5px;
   background-color: $btn-color;
-  color: $white;
+
   font-weight: bold;
+  @if $btn-color == $grey {
+    color: $black;
+  } @else {
+    color: $white;
+  }
 }
 
 @mixin darken-on-hover($color) {

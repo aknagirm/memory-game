@@ -45,19 +45,6 @@
   border-radius: 10px;
   border: none;
   background-color: $grey;
-  #left-text {
-    float: left;
-    padding-left: 5px;
-    font-weight: bold;
-    color: $dark-grey;
-  }
-  #right-text {
-    float: right;
-    padding-right: 5px;
-    font-size: large;
-    font-weight: bold;
-    color: $greyish-black;
-  }
 
   #player-button-ribon {
     top: -22px;
@@ -84,21 +71,6 @@
 
 .section-footer :last-child {
   margin-right: 0px;
-}
-
-.button-wrapper {
-  .restart-button {
-    @include action-button-wrapper($orange);
-  }
-  .restart-button:hover {
-    @include darken-on-hover($orange);
-  }
-  .new-game-button {
-    @include action-button-wrapper($grey);
-  }
-  .new-game-button:hover {
-    @include darken-on-hover($grey);
-  }
 }
 
 @media screen and (max-width: 767px) {
@@ -161,4 +133,32 @@
 
 .last-open-coins {
   transform: rotateY(180deg);
+}
+
+.modal {
+  padding: 0;
+  border: none;
+  border-radius: 20px;
+  &::backdrop {
+    background-color: $backdrop-color;
+    opacity: 0.7;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .modal {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .modal {
+    width: 55%;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .modal {
+    width: 35%;
+  }
 }

@@ -1,0 +1,38 @@
+<div class="card-wrapper">
+  <div class="card">
+    <div class="card-header">
+      <h1>{{ winnerStatus }}</h1>
+      <p>Game Over! Here are the results...</p>
+    </div>
+    <div class="card-section">
+      <ng-container *ngIf="gameType?.numberOfPlayers! > 1; else soloPlayer">
+        <ng-container *ngFor="let player of playerIdx">
+          <div class="player-score" [ngClass]="{ winner: player.winner }">
+            <span class="left-text"
+              >{{ player.title }} {{ player.winner ? "(Winner)" : "" }}</span
+            >
+            <span class="right-text">{{ player.points }} Pairs</span>
+          </div>
+        </ng-container>
+      </ng-container>
+      <ng-template #soloPlayer>
+        <div class="player-score">
+          <span class="left-text">Time Elapsed</span>
+          <span class="right-text">{{ timer.mm }}:{{ timer.ss }}</span>
+        </div>
+        <div class="player-score">
+          <span class="left-text">Moves Taken</span>
+          <span class="right-text">{{ clickCounter }} Moves</span>
+        </div>
+      </ng-template>
+    </div>
+    <div class="card-section">
+      <div class="button-wrapper">
+        <button class="restart-button" (click)="restart()">Restart</button>
+        <button class="new-game-button" (click)="newSetup()">
+          Setup New Game
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

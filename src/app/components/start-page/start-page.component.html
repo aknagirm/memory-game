@@ -79,10 +79,10 @@
         <div class="button-wrapper">
           <button
             class="action-button"
-            (click)="gridSize = 4"
+            (click)="gridSize = 2"
             [ngClass]="{
-              selected: gridSize === 4,
-              'action-button-hover-effect': gridSize !== 4
+              selected: gridSize === 2,
+              'action-button-hover-effect': gridSize !== 2
             }"
           >
             4x4
@@ -102,7 +102,9 @@
       <br />
       <div class="card-section">
         <div class="button-wrapper">
-          <button class="action-button start-button">Start Game</button>
+          <button class="action-button start-button" (click)="startGame()">
+            Start Game
+          </button>
         </div>
       </div>
     </div>

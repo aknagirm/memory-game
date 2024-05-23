@@ -1,8 +1,8 @@
-type GameTheme = 'number' | 'icons';
+export type GameTheme = 'number' | 'icons';
 
-type NumberOfPlayers = 1 | 2 | 3 | 4;
+export type NumberOfPlayers = 1 | 2 | 3 | 4;
 
-type GridSize = 4 | 6;
+export type GridSize = 4 | 6 | 2;
 
 export interface GameType {
   gameTheme: GameTheme;
@@ -20,4 +20,5 @@ export interface PlayerPonits {
   title: string;
   points: number;
   current: boolean;
+  winner?: boolean;
 }
