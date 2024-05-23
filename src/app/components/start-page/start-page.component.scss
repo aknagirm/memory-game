@@ -48,11 +48,11 @@
 }
 
 .action-button {
-  @include action-button-wrapper($grey);
+  @include action-button-wrapper($grey, "right");
 }
 
 .start-button {
-  @include action-button-wrapper($orange);
+  @include action-button-wrapper($orange, "right");
 }
 
 .start-button:hover {

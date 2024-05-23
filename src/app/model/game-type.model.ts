@@ -2,7 +2,7 @@ export type GameTheme = 'number' | 'icons';
 
 export type NumberOfPlayers = 1 | 2 | 3 | 4;
 
-export type GridSize = 4 | 6 | 2;
+export type GridSize = 4 | 6;
 
 export interface GameType {
   gameTheme: GameTheme;

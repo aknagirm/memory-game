@@ -25,7 +25,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
   indexArr: number[] = [];
   playerIdx: PlayerPonits[] = [];
   dataReady = false;
-  gameType: GameType;
+  gameType: GameType | undefined;
   timer = { mm: '00', ss: '00' };
   timerSub$: NodeJS.Timeout | undefined;
   lastTwoClickedIdx: number[] = [];
@@ -35,8 +35,13 @@ export class GamePageComponent implements OnInit, OnDestroy {
   nonMatchedItem = 0;
 
   constructor(private router: Router) {
-    this.gameType =
-      this.router.getCurrentNavigation()?.extras.state!['gameType'];
+    const state = this.router.getCurrentNavigation()?.extras.state;
+
+    if (!state) {
+      this.router.navigateByUrl('/');
+    } else {
+      this.gameType = state['gameType'];
+    }
   }
 
   ngOnInit(): void {
@@ -45,8 +50,8 @@ export class GamePageComponent implements OnInit, OnDestroy {
   }
 
   dataLoad() {
-    this.indexArr = [...Array(this.gameType.gridSize).keys()];
-    this.playerIdx = [...Array(this.gameType.numberOfPlayers).keys()].map(
+    this.indexArr = [...Array(this.gameType!.gridSize).keys()];
+    this.playerIdx = [...Array(this.gameType!.numberOfPlayers).keys()].map(
       (idx, id) => {
         return {
           title: `Player ${idx + 1}`,
@@ -57,17 +62,11 @@ export class GamePageComponent implements OnInit, OnDestroy {
     );
   }
 
-  /*  ngAfterViewInit(): void {
-    setTimeout(() => {
-      (this.dialog.nativeElement as HTMLDialogElement).showModal();
-    }, 1000);
-  } */
-
   gameBoardSetup() {
     let dataValTemp: string[] = [];
-    const totalIndex = Math.pow(this.gameType.gridSize, 2) / 2;
+    const totalIndex = Math.pow(this.gameType!.gridSize, 2) / 2;
     this.nonMatchedItem = totalIndex;
-    if (this.gameType.gameTheme === 'number') {
+    if (this.gameType!.gameTheme === 'number') {
       dataValTemp = [...Array(totalIndex).keys()].map((a) =>
         (a + 1).toString()
       );
@@ -118,7 +117,7 @@ export class GamePageComponent implements OnInit, OnDestroy {
     if (this.lastTwoClickedIdx.includes(idx)) {
       return;
     }
-    if (this.gameType.numberOfPlayers === 1) {
+    if (this.gameType!.numberOfPlayers === 1) {
       this.clickCounter++;
       if (this.clickCounter === 1) {
         this.timerStart();

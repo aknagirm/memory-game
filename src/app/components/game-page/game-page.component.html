@@ -21,21 +21,21 @@
       <div *ngFor="let j of indexArr">
         <div
           class="coin"
-          (click)="coinClicked(i * gameType.gridSize + j)"
+          (click)="coinClicked(i * gameType!.gridSize + j)"
           [ngClass]="{
-            'coin-open': memoryDataSet![i * gameType.gridSize + j].matched,
+            'coin-open': memoryDataSet![i * gameType!.gridSize + j].matched,
             'last-open-coins': lastTwoClickedIdx.includes(
-              i * gameType.gridSize + j
+              i * gameType!.gridSize + j
             )
           }"
         >
           <div class="front"></div>
-          <div class="back" *ngIf="gameType.gameTheme === 'number'">
-            {{ memoryDataSet![i * gameType.gridSize + j].value }}
+          <div class="back" *ngIf="gameType!.gameTheme === 'number'">
+            {{ memoryDataSet![i * gameType!.gridSize + j].value }}
           </div>
-          <div class="back" *ngIf="gameType.gameTheme === 'icons'">
+          <div class="back" *ngIf="gameType!.gameTheme === 'icons'">
             <i
-              class="{{ memoryDataSet![i * gameType.gridSize + j].value }}"
+              class="{{ memoryDataSet![i * gameType!.gridSize + j].value }}"
             ></i>
           </div>
         </div>
@@ -44,7 +44,7 @@
   </div>
   <div
     class="section section-footer"
-    *ngIf="gameType.numberOfPlayers !== 1; else soloPlayer"
+    *ngIf="gameType!.numberOfPlayers !== 1; else soloPlayer"
   >
     <div class="button-wrapper">
       <button

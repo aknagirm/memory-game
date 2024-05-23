@@ -43,13 +43,13 @@ body {
 
 .button-wrapper {
   .restart-button {
-    @include action-button-wrapper($orange);
+    @include action-button-wrapper($orange, "right");
   }
   .restart-button:hover {
     @include darken-on-hover($orange);
   }
   .new-game-button {
-    @include action-button-wrapper($grey);
+    @include action-button-wrapper($grey, "left");
   }
   .new-game-button:hover {
     @include darken-on-hover($grey);

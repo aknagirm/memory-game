@@ -15,7 +15,7 @@ import {
 export class StartPageComponent implements OnInit {
   gameTheme: GameTheme = 'number';
   numberofPlayer: NumberOfPlayers = 1;
-  gridSize: GridSize = 2;
+  gridSize: GridSize = 4;
 
   constructor(private router: Router) {}
 
