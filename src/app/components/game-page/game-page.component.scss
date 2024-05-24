@@ -101,11 +101,12 @@
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+  column-gap: 50px;
   .left-text {
-    /*  flex: 1 0 54px; */
+    flex: 1 0 55px;
   }
   .right-text {
-    /*  flex: 1 0 37px; */
+    flex: 1 0 13px;
   }
 
   #player-button-ribon {
