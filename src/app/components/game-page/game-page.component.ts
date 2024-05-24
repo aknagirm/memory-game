@@ -180,6 +180,16 @@ export class GamePageComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('/home');
   }
 
+  getGridStyles() {
+    return {
+      width: `${
+        this.gameType!.gridSize * 50 + (this.gameType!.gridSize - 1) * 7
+      }px`,
+      'grid-template-columns': `repeat(${this.gameType!.gridSize}, 1fr)`,
+      'grid-template-rows': `repeat(${this.gameType!.gridSize}, 1fr)`,
+    };
+  }
+
   cleanUp() {
     this.lastTwoClickedIdx = [];
     this.clickCounter = 0;

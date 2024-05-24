@@ -9,20 +9,13 @@ $white: #fcfcfc;
 $backdrop-color: #979797;
 $result-grid-bg: #dfe7ec;
 
-@mixin action-button-wrapper($btn-color, $margin) {
+@mixin action-button-wrapper($btn-color) {
+  flex: 1 1 50px;
   height: 2rem;
   border: none;
   border-radius: 26px;
   width: 100%;
   background-color: $btn-color;
-
-  @if $margin == right {
-    margin-right: 5px;
-  } @else if $margin == left {
-    margin-left: 5px;
-  } @else {
-    margin: auto;
-  }
 
   font-weight: bold;
   @if $btn-color == $grey {

@@ -21,7 +21,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh;
+  min-height: 50vh;
 }
 
 .card {
@@ -48,11 +48,11 @@
 }
 
 .action-button {
-  @include action-button-wrapper($grey, "right");
+  @include action-button-wrapper($grey);
 }
 
 .start-button {
-  @include action-button-wrapper($orange, "right");
+  @include action-button-wrapper($orange);
 }
 
 .start-button:hover {

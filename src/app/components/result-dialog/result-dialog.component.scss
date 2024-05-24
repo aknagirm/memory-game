@@ -21,6 +21,12 @@
         color: $dark-grey;
       }
     }
+    .button-wrapper {
+      flex-wrap: wrap;
+      button {
+        min-width: 120px;
+      }
+    }
 
     .winner {
       background-color: $black;

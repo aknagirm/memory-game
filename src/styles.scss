@@ -9,9 +9,8 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
-}
-.button-warpper :last-child {
-  margin-right: 0;
+  flex-wrap: nowrap;
+  gap: 5px;
 }
 
 .player-score {
@@ -19,23 +18,24 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   background-color: $result-grid-bg;
   border-radius: 10px;
   min-height: 40px;
   margin: 10px auto;
   padding-top: 5px;
   padding-bottom: 5px;
+  text-align: center;
+  border: none;
 }
 
 .left-text {
-  float: left;
-  padding-left: 10px;
+  flex: 1 0 75px;
   font-weight: bold;
   color: $dark-grey;
 }
 .right-text {
-  float: right;
-  padding-right: 10px;
+  flex: 1 0 75px;
   font-size: large;
   font-weight: bold;
   color: $greyish-black;
@@ -43,13 +43,13 @@ body {
 
 .button-wrapper {
   .restart-button {
-    @include action-button-wrapper($orange, "right");
+    @include action-button-wrapper($orange);
   }
   .restart-button:hover {
     @include darken-on-hover($orange);
   }
   .new-game-button {
-    @include action-button-wrapper($grey, "left");
+    @include action-button-wrapper($grey);
   }
   .new-game-button:hover {
     @include darken-on-hover($grey);

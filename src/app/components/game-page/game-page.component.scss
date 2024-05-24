@@ -12,6 +12,7 @@
   .section {
     display: flex;
     justify-content: space-between;
+    gap: 5px;
 
     h3 {
       margin: 0;
@@ -23,6 +24,58 @@
 .section-header {
   flex: 0 0 10%;
   align-items: center;
+}
+
+.section-body {
+  display: grid;
+  gap: 7px;
+  aspect-ratio: 1 / 1;
+  max-width: 90%;
+}
+
+.coin {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  color: $off-white;
+  font-size: 1.5em;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  .front {
+    position: absolute;
+    aspect-ratio: 1 / 1;
+    max-width: 50px;
+    width: 100%;
+    border-radius: 50%;
+    background-color: $greyish-black;
+    backface-visibility: hidden;
+  }
+  .back {
+    position: absolute;
+    aspect-ratio: 1 / 1;
+    max-width: 70px;
+    width: 100%;
+    border-radius: 50%;
+    background-color: $orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+  }
+}
+
+.coin-open {
+  transform: rotateY(180deg);
+  .back {
+    background-color: $grey;
+  }
+}
+
+.last-open-coins {
+  transform: rotateY(180deg);
 }
 
 .section-footer-solo {
@@ -40,11 +93,20 @@
 .player-button {
   position: relative;
   width: 100%;
-  margin-right: 10px;
   height: 40px;
   border-radius: 10px;
   border: none;
   background-color: $grey;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  .left-text {
+    /*  flex: 1 0 54px; */
+  }
+  .right-text {
+    /*  flex: 1 0 37px; */
+  }
 
   #player-button-ribon {
     top: -22px;
@@ -69,13 +131,12 @@
   }
 }
 
-.section-footer :last-child {
-  margin-right: 0px;
-}
-
 @media screen and (max-width: 767px) {
   .section {
     width: 90%;
+  }
+  .current-player-text-wrapper {
+    display: none;
   }
 }
 
@@ -89,50 +150,6 @@
   .section {
     width: 40%;
   }
-}
-
-.coin {
-  position: relative;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  color: $off-white;
-  font-size: 32px;
-  font-weight: bold;
-  margin: 10px;
-  transition: all 0.3s ease;
-  transform-style: preserve-3d;
-  .front {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-    background-color: $greyish-black;
-    backface-visibility: hidden;
-  }
-  .back {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-    background-color: $orange;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backface-visibility: hidden;
-    transform: rotateY(180deg);
-  }
-}
-
-.coin-open {
-  transform: rotateY(180deg);
-  .back {
-    background-color: $grey;
-  }
-}
-
-.last-open-coins {
-  transform: rotateY(180deg);
 }
 
 .modal {

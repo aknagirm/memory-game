@@ -16,9 +16,9 @@
       <button class="new-game-button" (click)="newSetup()">New Game</button>
     </div>
   </div>
-  <div class="section section-body">
-    <div *ngFor="let i of indexArr">
-      <div *ngFor="let j of indexArr">
+  <div class="section-body" [ngStyle]="getGridStyles()">
+    <ng-container *ngFor="let i of indexArr">
+      <ng-container *ngFor="let j of indexArr">
         <div
           class="coin"
           (click)="coinClicked(i * gameType!.gridSize + j)"
@@ -39,8 +39,8 @@
             ></i>
           </div>
         </div>
-      </div>
-    </div>
+      </ng-container>
+    </ng-container>
   </div>
   <div
     class="section section-footer"
@@ -53,8 +53,8 @@
         [ngClass]="{ selected: player.current }"
       >
         <span id="player-button-ribon" *ngIf="player.current"></span>
-        <span class="left-text">{{ player.title }}</span>
-        <span class="right-text">{{ player.points }}</span>
+        <div class="left-text">{{ player.title }}</div>
+        <div class="right-text">{{ player.points }}</div>
       </button>
     </div>
     <div class="current-player-text-wrapper">
@@ -65,13 +65,13 @@
   </div>
   <ng-template #soloPlayer>
     <div class="section section-footer-solo">
-      <div class="player-score" style="margin-right: 5px">
-        <span class="left-text">Time</span>
-        <span class="right-text">{{ timer.mm }}:{{ timer.ss }}</span>
+      <div class="player-score">
+        <div class="left-text">Time</div>
+        <div class="right-text">{{ timer.mm }}:{{ timer.ss }}</div>
       </div>
-      <div class="player-score" style="margin-left: 5px">
-        <span class="left-text">Moves</span>
-        <span class="right-text">{{ clickCounter }}</span>
+      <div class="player-score">
+        <div class="left-text">Moves</div>
+        <div class="right-text">{{ clickCounter }}</div>
       </div>
     </div>
   </ng-template>
