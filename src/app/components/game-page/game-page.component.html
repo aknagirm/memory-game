@@ -8,12 +8,42 @@
     (restartCall)="restartCall()"
   ></app-result-dialog>
 </dialog>
+<dialog class="modal" #btndialog>
+  <div class="button-wrapper button-column-wrapper">
+    <button class="restart-button" (click)="restartCall(); btndialog.close()">
+      Restart
+    </button>
+    <button class="new-game-button" (click)="newSetup(); btndialog.close()">
+      New Game
+    </button>
+    <button class="new-game-button" (click)="btndialog.close()">Resume</button>
+  </div>
+</dialog>
 <div class="container">
   <div class="section section-header">
     <h3 style="width: 60%">Memory</h3>
     <div class="button-wrapper">
-      <button class="restart-button" (click)="restartCall()">Restart</button>
-      <button class="new-game-button" (click)="newSetup()">New Game</button>
+      <button
+        class="restart-button"
+        id="btn-display-for-sm"
+        (click)="btndialog.showModal()"
+      >
+        Menu
+      </button>
+      <button
+        class="restart-button"
+        id="btn-display-none-for-sm"
+        (click)="restartCall()"
+      >
+        Restart
+      </button>
+      <button
+        class="new-game-button"
+        id="btn-display-none-for-sm"
+        (click)="newSetup()"
+      >
+        New Game
+      </button>
     </div>
   </div>
   <div class="section-body" [ngStyle]="getGridStyles()">
