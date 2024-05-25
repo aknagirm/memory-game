@@ -2,7 +2,6 @@
 @import "../../../styles.scss";
 
 .container {
-  height: 90vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -145,33 +144,6 @@
   }
 }
 
-@media screen and (max-width: 767px) {
-  .section {
-    width: 90%;
-  }
-  .current-player-text-wrapper {
-    display: none;
-  }
-  #btn-display-for-sm {
-    display: block;
-  }
-  #btn-display-none-for-sm {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-  .section {
-    width: 60%;
-  }
-}
-
-@media screen and (min-width: 1025px) {
-  .section {
-    width: 40%;
-  }
-}
-
 .modal {
   padding: 0;
   border: none;
@@ -183,18 +155,45 @@
 }
 
 @media screen and (max-width: 767px) {
+  .section {
+    width: 90%;
+  }
+  .container {
+    height: 90vh;
+  }
+  .current-player-text-wrapper {
+    display: none;
+  }
+  #btn-display-for-sm {
+    display: block;
+  }
+  #btn-display-none-for-sm {
+    display: none;
+  }
   .modal {
     width: 80%;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
+  .section {
+    width: 60%;
+  }
+  .container {
+    height: 100vh;
+  }
   .modal {
     width: 55%;
   }
 }
 
 @media screen and (min-width: 1025px) {
+  .section {
+    width: 40%;
+  }
+  .container {
+    height: 100vh;
+  }
   .modal {
     width: 35%;
   }
