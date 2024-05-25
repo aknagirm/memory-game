@@ -30,9 +30,10 @@ You can :
 - Choose to play on either a 6x6 or 4x4 grid
 
 ### Screenshots
-
-![](./ss/4grid.png.jpg)
-![](./ss/6grid.png.jpg)
+<p>
+<img  width="500" height="500" src="./ss/4grid.png">
+<img  width="500" height="500" src="./ss/6grid.png">
+</p>
 
 ### Links
 
