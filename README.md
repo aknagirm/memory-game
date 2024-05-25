@@ -1,12 +1,12 @@
 # Memory Game
 
 This is fun game for the people of all age groups. Here you can test and sharpen your memory with different difficulty levels (**4x4** or **6x6**). This game can be played in very short time. You can enjoy this with your friends or as a solo player. This game can be a quick refreshment when you are bored, or over stressed for may be your work or for some other reason. In those situations this game can be a quick mind freshner. You can play this in your home, or your office (Make sure your boss does not see you playing though :stuck_out_tongue_winking_eye:) either on your phone or laptop or any other device. You can choose the theme as simple **Numbers mode** or can make it more iconic with **Icons mode**.
- 
+
 ## Table of contents
 
 - [Overview](#overview)
   - [How to play](#how-to-play)
-  - [Screenshot](#screenshot)
+  - [Screenshot](#screenshots)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
@@ -29,10 +29,10 @@ You can :
 - Set the theme to use numbers or icons within the tiles
 - Choose to play on either a 6x6 or 4x4 grid
 
-### Screenshot
+### Screenshots
 
-![](./screenshot.jpg)
-
+![](./ss/4grid.png.jpg)
+![](./ss/6grid.png.jpg)
 
 ### Links
 
